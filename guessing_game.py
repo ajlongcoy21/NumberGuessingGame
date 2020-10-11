@@ -86,7 +86,6 @@ def start_game():
     # Setup the game variables
     play_again = True
     high_score = 999
-    round = 0
     player_guess_attempts = 0
 
     # Call the display_intro function
@@ -107,7 +106,7 @@ def start_game():
 
             # Check to see if the player guessed correctly
             # If player did not guess correctly, indicate if they need to guess higher or lower
-            
+
             if player_guess == random_number :
                 
                 print("You have guessed the number in {} attempts! Congratulations :)".format(player_guess_attempts))
