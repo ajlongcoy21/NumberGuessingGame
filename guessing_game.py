@@ -28,10 +28,15 @@ def display_intro():
     print("\n")
 
 def generate_random_number():
+    """
+    Genrates the random number for the user to guess during the round
+    """
     return random.randint(LOWER_RANGE,UPPER_RANGE)
 
 def get_player_guess():
-
+    """
+    Asks the player for their guess and checks to make sure the guess is within the range.
+    """
     try:
         player_guess = int(input("Please enter your guess for the random number: "))
     except ValueError:
@@ -44,7 +49,7 @@ def get_player_guess():
 
 def ask_to_play_again():
     """
-    docstring
+    Asks the user if they want to play again
     """
     
     asking = True
@@ -92,21 +97,32 @@ def start_game():
 
     # Loop to continuously promt the player for a guess
     while play_again:
+
         try:
             player_guess_attempts += 1
-            player_guess = get_player_guess()
+            player_guess = get_player_guess() 
         except ValueError as err:
             print("{}".format(err))
         else:
+
+            # Check to see if the player guessed correctly
+            # If player did not guess correctly, indicate if they need to guess higher or lower
+            
             if player_guess == random_number :
                 
                 print("You have guessed the number in {} attempts! Congratulations :)".format(player_guess_attempts))
+
+                # Check to see if the player set a new high score
                 if player_guess_attempts < high_score:
                     high_score = player_guess_attempts
                 
+                # Ask the player if they want to play again
                 player_response = ask_to_play_again()
+
+                # If player wants to play again, setup variables for a new round
+                # Else thank them for playing and end the game
+
                 if player_response == "Y":
-                    round += 1
                     player_guess_attempts = 0
                     random_number = generate_random_number()
                     print("\n")
